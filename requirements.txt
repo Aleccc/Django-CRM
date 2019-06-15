@@ -6,7 +6,7 @@ django-storages==1.7.1
 pytz==2018.9
 psycopg2-binary==2.7.7
 redis
-django-compressor==2.2
+django-compressor>=2.2
 coverage
 pytest==4.1.1
 pytest-cov==2.6.1
@@ -18,7 +18,7 @@ phonenumbers==8.10.4
 django-phonenumber-field==2.2.0
 amqp==2.4.1
 billiard==3.5.0.5
-celery==4.2.1
+# celery==4.2.1
 kombu==4.3.0
 vine==1.2.0
 openpyxl==2.6.0

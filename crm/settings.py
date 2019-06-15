@@ -1,11 +1,11 @@
 import os
-from celery.schedules import crontab
+#from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mwx@&97%!$fx_*zgj(2ygi^(s=oh5j(cqb$=+-mkd9scbt!0v0'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'phonenumber_field',
     'storages',
-    'marketing',
+    #'marketing',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -214,30 +214,30 @@ COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': 'STATIC_URL',
 }
 
-DEFAULT_FROM_EMAIL = 'no-reply@django-crm.micropyramid.com'
+DEFAULT_FROM_EMAIL = 'no-reply@gassouth.com'
 
 # celery Tasks
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-CELERY_BEAT_SCHEDULE = {
-    "runs-campaign-for-every-thiry-minutes": {
-        "task": "marketing.tasks.run_all_campaigns",
-        "schedule": crontab(minute=30, hour='*')
-    },
-    "runs-campaign-for-every-five-minutes": {
-        "task": "marketing.tasks.list_all_bounces_unsubscribes",
-        "schedule": crontab(minute='*/5')
-    },
-    "runs-scheduled-campaigns-for-every-one-hour": {
-        "task": "marketing.tasks.send_scheduled_campaigns",
-        "schedule": crontab(hour='*/1')
-    },
-    "runs-unsubscribes-bounces-for-every-one-hour": {
-        "task": "marketing.tasks.list_all_bounces_unsubscribes",
-        "schedule": crontab(hour='*/1')
-    },
-}
+#CELERY_BEAT_SCHEDULE = {
+#    "runs-campaign-for-every-thiry-minutes": {
+#        "task": "marketing.tasks.run_all_campaigns",
+#        "schedule": crontab(minute=30, hour='*')
+#    },
+#    "runs-campaign-for-every-five-minutes": {
+#        "task": "marketing.tasks.list_all_bounces_unsubscribes",
+#        "schedule": crontab(minute='*/5')
+#    },
+#    "runs-scheduled-campaigns-for-every-one-hour": {
+#        "task": "marketing.tasks.send_scheduled_campaigns",
+#        "schedule": crontab(hour='*/1')
+#    },
+#    "runs-unsubscribes-bounces-for-every-one-hour": {
+#        "task": "marketing.tasks.list_all_bounces_unsubscribes",
+#        "schedule": crontab(hour='*/1')
+#    },
+#}
 
 MAIL_SENDER = 'AMAZON'
 INACTIVE_MAIL_SENDER = 'MANDRILL'
@@ -254,9 +254,11 @@ SG_PWD = os.getenv('SG_PWD', '')
 
 MANDRILL_API_KEY = os.getenv('MANDRILL_API_KEY', '')
 
-ADMIN_EMAIL = "admin@micropyramid.com"
+ADMIN_EMAIL = "admin@gassouth.com"
 
 URL_FOR_LINKS = "http://djangocrm.com"
+
+PHONENUMBER_DEFAULT_REGION = 'US'
 
 try:
     from .dev_settings import *

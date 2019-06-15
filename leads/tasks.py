@@ -1,4 +1,4 @@
-from celery.task import task
+#from celery.task import task
 from django.conf import settings
 from django.db.models import Q
 from django.core.mail import EmailMultiAlternatives
@@ -12,7 +12,7 @@ def get_rendered_html(template_name, context={}):
     return html_content
 
 
-@task
+#@task
 def send_email(subject, html_content,
                text_content=None, from_email=None,
                recipients=[], attachments=[], bcc=[], cc=[]):
@@ -31,7 +31,7 @@ def send_email(subject, html_content,
     email.send()
 
 
-@task
+#@task
 def send_lead_assigned_emails(lead_id, new_assigned_to_list, site_address):
     lead_instance = Lead.objects.filter(
         ~Q(status='converted'), pk=lead_id, is_active=True

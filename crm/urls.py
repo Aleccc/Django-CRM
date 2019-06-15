@@ -9,7 +9,7 @@ app_name = 'crm'
 urlpatterns = [
     path('', include('common.urls', namespace="common")),
     path('', include('django.contrib.auth.urls')),
-    path('m/', include('marketing.urls', namespace="marketing")),
+    #path('m/', include('marketing.urls', namespace="marketing")),
     path('accounts/', include('accounts.urls', namespace="accounts")),
     path('leads/', include('leads.urls', namespace="leads")),
     path('contacts/', include('contacts.urls', namespace="contacts")),
