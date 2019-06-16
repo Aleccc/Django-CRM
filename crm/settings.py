@@ -185,11 +185,6 @@ elif STORAGE_TYPE == 's3-storage':
 
 COMPRESS_ROOT = BASE_DIR + '/static/'
 
-COMPRESS_ENABLED = True
-
-COMPRESS_OFFLINE_CONTEXT = {
-    'STATIC_URL': 'STATIC_URL',
-}
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -207,8 +202,10 @@ COMPRESS_URL = STATIC_URL
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
     ('text/x-sass', 'sass {infile} {outfile}'),
-    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+    ('text/x-scss', 'sass {infile} {outfile}'),
 )
+
+COMPRESS_OFFLINE = True
 
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': 'STATIC_URL',
